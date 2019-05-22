@@ -107,6 +107,7 @@ int showMenu () {
         std::cout << "4. Add Movie Player" << std::endl;
         std::cout << "5. Display Production Statistics" << std::endl;
         std::cout << "6. Exit" << std::endl;
+
         std::cout << "" << std::endl;
 
         return 0;
