@@ -10,18 +10,44 @@ void printSum(int, int);
 
 int calculateSum(int, int);
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+int showMenu();
 
+int main() {
+
+    std::cout << "Production Line Tracker" << std::endl << std::endl;
     //Week 1: Procedural Project 1: repl.it
-    std::cout << "Production Line Tracker" << std::endl;
-    std::cout << "" << std::endl;
-    std::cout << "1. Add Employee Account" << std::endl;
-    std::cout << "2. Add Music Player" << std::endl;
-    std::cout << "3. Add Movie Player" << std::endl;
-    std::cout << "4. Display Production Statistics" << std::endl;
-    std::cout << "5. Exit";
+    std::cout << "1. Produce Items" << std::endl;
+    std::cout << "2. Add Employee Account" << std::endl;
+    std::cout << "3. Add Music Player" << std::endl;
+    std::cout << "4. Add Movie Player" << std::endl;
+    std::cout << "5. Display Production Statistics" << std::endl;
+    std::cout << "6. Exit" << std::endl;
     //Week 1 end
+
+    //Week 2: Procedural Project 2a
+     int n;
+     std::cout << "Enter a Number: ";
+     std::cin >> n;
+
+     if (n==6) {
+         showMenu();
+     }
+     while (n>0 && n<6) {
+         std::cout << "Produce Items Stub" << std::endl;
+         std::cout << "Enter a Number: ";
+         std::cin >> n;
+         if(n == 6) {
+             showMenu();
+         }
+     }
+     while (n >6){
+         std::cout << "Not a valid Selection" << std::endl;
+         std::cout << "Enter a Number: ";
+         std::cin >> n;
+         if(n == 6) {
+             showMenu();
+         }
+     }
 
     //Class Activity 05/20: Functions
     sayHello();
@@ -55,6 +81,7 @@ int main() {
     } else {
         std::cout << "Unable to open" << std::endl;
     }
+
     return 0;
 }
 
@@ -71,4 +98,19 @@ void printSum(int num1, int num2) {  //Accepting the value from main
 int calculateSum(int num1, int num2) {
     return num1 + num2;
 }
+
+int showMenu () {
+        std::cout << "" << std::endl;
+        std::cout << "1. Produce Items" << std::endl;
+        std::cout << "2. Add Employee Accounts" << std::endl;
+        std::cout << "3. Add Music Player " << std::endl;
+        std::cout << "4. Add Movie Player" << std::endl;
+        std::cout << "5. Display Production Statistics" << std::endl;
+        std::cout << "6. Exit" << std::endl;
+        std::cout << "" << std::endl;
+
+        return 0;
+    }
+
+
 
