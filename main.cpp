@@ -5,7 +5,9 @@
 
 //Prototype
 int showMenu();
-void getChoice ();
+
+void getChoice();
+
 bool continueProgram = true;
 
 int main() {
@@ -55,38 +57,44 @@ int main() {
 }
 
 
+int showMenu() {
 
-int showMenu () {
+    std::cout << "1. Produce Items" << std::endl;
+    std::cout << "2. Add Employee Account" << std::endl;
+    std::cout << "3. Add Music Player" << std::endl;
+    std::cout << "4. Add Movie Player" << std::endl;
+    std::cout << "5. Display Production Statistics" << std::endl;
+    std::cout << "6. Exit" << std::endl;
 
-        std::cout << "1. Produce Items" << std::endl;
-        std::cout << "2. Add Employee Account" << std::endl;
-        std::cout << "3. Add Music Player" << std::endl;
-        std::cout << "4. Add Movie Player" << std::endl;
-        std::cout << "5. Display Production Statistics" << std::endl;
-        std::cout << "6. Exit" << std::endl;
+    std::cout << "" << std::endl;
 
-        std::cout << "" << std::endl;
+    return 0;
+}
 
-        return 0;
-    }
-void getChoice(){
+void getChoice() {
     int choice;
     std::cin >> choice;
-    switch  (choice){
-        case 1 : std:: cout << "Produce Items Stub" << std::endl; //After selecting 1 from the the main menu - showMenu()
+    switch (choice) {
+        case 1 :
+            std::cout << "Produce Items Stub" << std::endl; //After selecting 1 from the the main menu - showMenu()
             break;
-        case 2 : std:: cout << "Add Employee Account Stub"<< std::endl; //Similar as case 1 to case 5
+        case 2 :
+            std::cout << "Add Employee Account Stub" << std::endl; //Similar as case 1 to case 5
             break;
-        case 3 : std:: cout << "Add Music Player Stub" << std::endl;
+        case 3 :
+            std::cout << "Add Music Player Stub" << std::endl;
             break;
-        case 4 : std:: cout << "Add Movie Player Stub"<< std::endl;
+        case 4 :
+            std::cout << "Add Movie Player Stub" << std::endl;
             break;
-        case 5 : std:: cout << "Dispplay Production Statistics Stub"<< std::endl;
+        case 5 :
+            std::cout << "Dispplay Production Statistics Stub" << std::endl;
             break;
         case 6:
             continueProgram = false; //When the user enters 6, the do-while ends nad returns to main menu
             break;
-        default: std::cout<<"Not a valid selection" << std::endl;
+        default:
+            std::cout << "Not a valid selection" << std::endl;
     }
 }
 
