@@ -96,6 +96,7 @@ void getChoice() {
         default:
             std::cout << "Not a valid selection" << std::endl;
     }
+
 }
 
 
