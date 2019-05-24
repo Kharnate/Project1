@@ -1,4 +1,15 @@
 // ctrl + alt + l for style
+
+/**@file main.cpp
+ * @brief Entire media player production program (for now)
+ *  A demonstration of functions and files.
+ *
+ * @author Karan patel
+ * @bug
+
+ */
+
+
 #include <iostream>
 #include <fstream> // Stream class to both read and write from/to files.
 #include <string>
