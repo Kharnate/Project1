@@ -1,117 +1,164 @@
 // ctrl + alt + l for style
+
+/**@file main.cpp
+ * @brief Entire media player production program (for now)
+ *  A demonstration of functions and files.
+ *
+ * @author Karan patel
+ * @bug
+
+ */
+
+
 #include <iostream>
 #include <fstream> // Stream class to both read and write from/to files.
 #include <string>
 
 //Prototype
-void sayHello();
-
-void printSum(int, int);
-
-int calculateSum(int, int);
-
 int showMenu();
+
+void getChoice();
+
+bool continueProgram = true;
+
+
+int prodNum = 1;
+int audioSerialNum = 1;
+int audioMobileSerialNum = 1;
+int visualSerialNum = 1;
+int visualMobileSerialNum = 1;
+
 
 int main() {
 
-    std::cout << "Production Line Tracker" << std::endl << std::endl;
     //Week 1: Procedural Project 1: repl.it
+    std::cout << "Production Line Tracker" << std::endl << std::endl;
+    showMenu();
+
+    //Week 2: Procedural Project 2a
+    std::cout << "Production Line Tracker" << std::endl;
+    std::cout << "" << std::endl;
+
+    do {
+        showMenu();
+        getChoice();
+    } while (continueProgram);
+
+
+    std::cout << "Enter the Manufacturer\n";
+    std::string manufacturer;
+    std::cin >> manufacturer;
+
+    std::cout << "Enter the Product Name\n";
+    std::string prodName;
+    std::cin >> prodName;
+
+    std::cout << "Enter the item type\n";
+    std::cout << "1. Audio\n" <<
+         "2. Visual\n" <<
+         "3. AudioMobile\n" <<
+         "4. VisualMobile\n";
+    int itemTypeChoice;
+    std::cin >> itemTypeChoice;
+
+    std::string itemTypeCode;
+
+    if (itemTypeChoice==1) {
+        itemTypeCode = "MM";
+    }
+    else if (itemTypeChoice==2) {
+        itemTypeCode = "VI";
+    }
+    else if (itemTypeChoice==3) {
+        itemTypeCode = "AM";
+    }
+    else if  (itemTypeChoice==4){
+        itemTypeCode = "VM";
+        }
+    else {
+        std::cout << "Not Valid: Try Again" << std::endl;
+        std::cin>> itemTypeChoice;
+    }
+
+
+    std::cout << "Enter the number of items that were produced\n";
+    int numProduced;
+    std::cin >> numProduced;
+
+    std::string manufacturerCode = manufacturer.substr (0,3);
+
+    while( prodNum <= numProduced){
+
+        if (itemTypeCode == "MM"  ){
+            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< audioSerialNum << std::endl;
+            prodNum++;
+            audioSerialNum++;
+        }
+
+         else if (itemTypeCode == "VI"){
+            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< visualSerialNum << std::endl;
+            prodNum++;
+            visualSerialNum++;
+        }
+
+        else if (itemTypeCode == "AM") {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< audioMobileSerialNum << std::endl;
+            prodNum++;
+            audioMobileSerialNum++;
+        }
+
+        else if (itemTypeCode == "VM") {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< visualMobileSerialNum<<std::endl;
+            prodNum++;
+            visualMobileSerialNum++;
+        }
+    }
+
+
+
+    return 0;
+
+}
+
+int showMenu() {
+
     std::cout << "1. Produce Items" << std::endl;
     std::cout << "2. Add Employee Account" << std::endl;
     std::cout << "3. Add Music Player" << std::endl;
     std::cout << "4. Add Movie Player" << std::endl;
     std::cout << "5. Display Production Statistics" << std::endl;
     std::cout << "6. Exit" << std::endl;
-    //Week 1 end
 
-    //Week 2: Procedural Project 2a
-     int n;
-     std::cout << "Enter a Number: ";
-     std::cin >> n;
-
-     if (n==6) {
-         showMenu();
-     }
-     while (n>0 && n<6) {
-         std::cout << "Produce Items Stub" << std::endl;
-         std::cout << "Enter a Number: ";
-         std::cin >> n;
-         if(n == 6) {
-             showMenu();
-         }
-     }
-     while (n >6){
-         std::cout << "Not a valid Selection" << std::endl;
-         std::cout << "Enter a Number: ";
-         std::cin >> n;
-         if(n == 6) {
-             showMenu();
-         }
-     }
-
-    //Class Activity 05/20: Functions
-    sayHello();
-    int num1 = 2;
-    int num2 = 3;
-    printSum(num2, num2); //Sending values to printSum
-    std::cout << "num1 in main is " << num1 << std::endl;
-    int sum = calculateSum(num1, num2);
-    std::cout << "The sum is " << sum << std::endl;
-
-    // Files
-    std::ofstream myOutputFile;
-    myOutputFile.open("example.txt");
-    myOutputFile << "Writing this to a file.\n";
-    myOutputFile.close(); //Closes the file
-    /*
-     * This code creates a filled called example.txt
-     * and insert a sentence into it in the same way as count,
-     * but using the file stream myfile instead.
-     */
-
-    std::string line;
-    std::ifstream myInputFile("example.txt");
-
-    if (myInputFile.is_open()) {
-        while (getline(myInputFile, line)) { //Reads the file line by line, using getline.
-            //Value returned by getline is a reference to the stream object itself
-            std::cout << line << std::endl;
-        }
-        myInputFile.close(); //Closes the file
-    } else {
-        std::cout << "Unable to open" << std::endl;
-    }
-
+    std::cout << "" << std::endl;
     return 0;
+
 }
 
-void sayHello() {
-    std::cout << "Hello World!" << std::endl;
-}
-
-
-void printSum(int num1, int num2) {  //Accepting the value from main
-    num1 = 10;
-    std::cout << "The total in printSum is " << num1 + num2 << std::endl;
-}
-
-int calculateSum(int num1, int num2) {
-    return num1 + num2;
-}
-
-int showMenu () {
-        std::cout << "" << std::endl;
-        std::cout << "1. Produce Items" << std::endl;
-        std::cout << "2. Add Employee Accounts" << std::endl;
-        std::cout << "3. Add Music Player " << std::endl;
-        std::cout << "4. Add Movie Player" << std::endl;
-        std::cout << "5. Display Production Statistics" << std::endl;
-        std::cout << "6. Exit" << std::endl;
-
-        std::cout << "" << std::endl;
-
-        return 0;
+void getChoice() {
+    int choice;
+    std::cin >> choice;
+    switch (choice) {
+        case 1 :
+            std::cout << "Produce Items Stub" << std::endl; //After selecting 1 from the the main menu - showMenu()
+            break;
+        case 2 :
+            std::cout << "Add Employee Account Stub" << std::endl; //Similar as case 1 to case 5
+            break;
+        case 3 :
+            std::cout << "Add Music Player Stub" << std::endl;
+            break;
+        case 4 :
+            std::cout << "Add Movie Player Stub" << std::endl;
+            break;
+        case 5 :
+            std::cout << "Display Production Statistics Stub" << std::endl;
+            break;
+        case 6:
+            continueProgram = false; //When the user enters 6, the do-while ends nad returns to main menu
+            break;
+        default:
+            std::cout << "Not a valid selection" << std::endl;
     }
-
+}
 
 
