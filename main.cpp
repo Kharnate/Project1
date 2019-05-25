@@ -55,29 +55,25 @@ int main() {
 
     std::cout << "Enter the item type\n";
     std::cout << "1. Audio\n" <<
-         "2. Visual\n" <<
-         "3. AudioMobile\n" <<
-         "4. VisualMobile\n";
+              "2. Visual\n" <<
+              "3. AudioMobile\n" <<
+              "4. VisualMobile\n";
     int itemTypeChoice;
     std::cin >> itemTypeChoice;
 
     std::string itemTypeCode;
 
-    if (itemTypeChoice==1) {
+    if (itemTypeChoice == 1) {
         itemTypeCode = "MM";
-    }
-    else if (itemTypeChoice==2) {
+    } else if (itemTypeChoice == 2) {
         itemTypeCode = "VI";
-    }
-    else if (itemTypeChoice==3) {
+    } else if (itemTypeChoice == 3) {
         itemTypeCode = "AM";
-    }
-    else if  (itemTypeChoice==4){
+    } else if (itemTypeChoice == 4) {
         itemTypeCode = "VM";
-        }
-    else {
+    } else {
         std::cout << "Not Valid: Try Again" << std::endl;
-        std::cin>> itemTypeChoice;
+        std::cin >> itemTypeChoice;
     }
 
 
@@ -85,35 +81,32 @@ int main() {
     int numProduced;
     std::cin >> numProduced;
 
-    std::string manufacturerCode = manufacturer.substr (0,3);
+    std::string manufacturerCode = manufacturer.substr(0, 3);
 
-    while( prodNum <= numProduced){
+    while (prodNum <= numProduced) {
 
-        if (itemTypeCode == "MM"  ){
-            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< audioSerialNum << std::endl;
+        if (itemTypeCode == "MM") {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
+                      << "00000" << audioSerialNum << std::endl;
             prodNum++;
             audioSerialNum++;
-        }
-
-         else if (itemTypeCode == "VI"){
-            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< visualSerialNum << std::endl;
+        } else if (itemTypeCode == "VI") {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
+                      << "00000" << visualSerialNum << std::endl;
             prodNum++;
             visualSerialNum++;
-        }
-
-        else if (itemTypeCode == "AM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< audioMobileSerialNum << std::endl;
+        } else if (itemTypeCode == "AM") {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
+                      << "00000" << audioMobileSerialNum << std::endl;
             prodNum++;
             audioMobileSerialNum++;
-        }
-
-        else if (itemTypeCode == "VM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " <<manufacturerCode << itemTypeCode << "00000"<< visualMobileSerialNum<<std::endl;
+        } else if (itemTypeCode == "VM") {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
+                      << "00000" << visualMobileSerialNum << std::endl;
             prodNum++;
             visualMobileSerialNum++;
         }
     }
-
 
 
     return 0;
