@@ -2,7 +2,8 @@
 
 /**@file main.cpp
  * @brief Entire media player production program (for now)
- *  A demonstration of functions and files.
+ *
+ *  This program helps to keep track the production and creates a serial number for each product type.
  *
  * @author Karan patel
  * @bug
@@ -63,6 +64,7 @@ int main() {
 
     std::string itemTypeCode;
 
+    //Giving item type its code type, make easy to create serial number
     if (itemTypeChoice == 1) {
         itemTypeCode = "MM";
     } else if (itemTypeChoice == 2) {
@@ -85,24 +87,26 @@ int main() {
 
     while (prodNum <= numProduced) {
 
+        //Each type has a different serial number: MM, VI, AM, VM with different manufacturer.
+
         if (itemTypeCode == "MM") {
             std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "00000" << audioSerialNum << std::endl;
+                      << "0000" << audioSerialNum << std::endl;
             prodNum++;
             audioSerialNum++;
         } else if (itemTypeCode == "VI") {
             std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "00000" << visualSerialNum << std::endl;
+                      << "0000" << visualSerialNum << std::endl;
             prodNum++;
             visualSerialNum++;
         } else if (itemTypeCode == "AM") {
             std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "00000" << audioMobileSerialNum << std::endl;
+                      << "0000" << audioMobileSerialNum << std::endl;
             prodNum++;
             audioMobileSerialNum++;
         } else if (itemTypeCode == "VM") {
             std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "00000" << visualMobileSerialNum << std::endl;
+                      << "0000" << visualMobileSerialNum << std::endl;
             prodNum++;
             visualMobileSerialNum++;
         }
@@ -153,5 +157,4 @@ void getChoice() {
             std::cout << "Not a valid selection" << std::endl;
     }
 }
-
 
