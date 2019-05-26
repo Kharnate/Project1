@@ -31,15 +31,11 @@ int visualMobileSerialNum = 1;
 
 
 int main() {
-
     //Week 1: Procedural Project 1: repl.it
     std::cout << "Production Line Tracker" << std::endl << std::endl;
-    showMenu();
 
-    //Week 2: Procedural Project 2a
-    std::cout << "Production Line Tracker" << std::endl;
-    std::cout << "" << std::endl;
 
+    //Week 2:
     do {
         showMenu();
         getChoice();
@@ -90,23 +86,23 @@ int main() {
         //Each type has a different serial number: MM, VI, AM, VM with different manufacturer.
 
         if (itemTypeCode == "MM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "0000" << audioSerialNum << std::endl;
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+            printf ("%.5d \n", audioSerialNum);
             prodNum++;
             audioSerialNum++;
         } else if (itemTypeCode == "VI") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "0000" << visualSerialNum << std::endl;
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+            printf (".5d \n", visualSerialNum);
             prodNum++;
             visualSerialNum++;
         } else if (itemTypeCode == "AM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "0000" << audioMobileSerialNum << std::endl;
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+            printf(".5d \n", audioMobileSerialNum);
             prodNum++;
             audioMobileSerialNum++;
         } else if (itemTypeCode == "VM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode
-                      << "0000" << visualMobileSerialNum << std::endl;
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+             printf ("%.5d \n" ,visualMobileSerialNum);
             prodNum++;
             visualMobileSerialNum++;
         }
