@@ -14,6 +14,8 @@
 #include <iostream>
 #include <fstream> // Stream class to both read and write from/to files.
 #include <string>
+#include <iomanip>
+#include <stdio.h>
 
 //Prototype
 int showMenu();
@@ -79,35 +81,39 @@ int main() {
     int numProduced;
     std::cin >> numProduced;
 
+    //Gets first 3 character of string.
     std::string manufacturerCode = manufacturer.substr(0, 3);
+
+    std::ofstream file;
+    file.open ("production.txt");
 
     while (prodNum <= numProduced) {
 
         //Each type has a different serial number: MM, VI, AM, VM with different manufacturer.
 
         if (itemTypeCode == "MM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
-            printf ("%.5d \n", audioSerialNum);
+            file << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+            file << std::setfill('0')  << std::setw(5) << audioSerialNum << std::endl;
             prodNum++;
             audioSerialNum++;
         } else if (itemTypeCode == "VI") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
-            printf (".5d \n", visualSerialNum);
+            file << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+            file << std::setfill('0') << std::setw(5) << visualSerialNum << std::endl;
             prodNum++;
             visualSerialNum++;
         } else if (itemTypeCode == "AM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
-            printf(".5d \n", audioMobileSerialNum);
+            file << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+            file << std::setfill('0') << std::setw(5) << audioMobileSerialNum << std::endl;
             prodNum++;
             audioMobileSerialNum++;
         } else if (itemTypeCode == "VM") {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
-             printf ("%.5d \n" ,visualMobileSerialNum);
+            file << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
+            file << std::setfill('0') << std::setw(5) << visualMobileSerialNum << std::endl;
             prodNum++;
             visualMobileSerialNum++;
         }
     }
-
+    file.close();
 
     return 0;
 
