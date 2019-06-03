@@ -21,22 +21,21 @@
 int showMenu();
 
 void getChoice();
-void addProduct ();
-void addProductMenu();
 
-void addNewProducts ();
-void enterProductDetails ();
+void produceItems();
 
+
+void addNewProducts();
 
 
 int prodNum = 1;
 int audioSerialNum = 0;
 int visualSerialNum = 0;
-int numberOfProducts;
 
-std::vector <std::string> productLineManufacturer;
-std::vector <std::string> productLineName;
-std::vector <std::string> productLineItemType;
+
+std::vector<std::string> productLineManufacturer;
+std::vector<std::string> productLineName;
+std::vector<std::string> productLineItemType;
 
 std::string manufacturer;
 std::string productName;
@@ -44,12 +43,50 @@ int itemTypeChoice;
 std::string itemTypeCode;
 std::string manufacturerCode;
 
+std::vector<std::string> productNum;
+std::vector<std::string> productManufacturer;
+std::vector<std::string> productItemType;
+std::vector<std::string> serialNum;
+
 
 int main() {
-
+    productLineManufacturer.push_back("Apple");
+    productLineName.push_back("iPod");
+    productLineItemType.push_back("AM");
+    productLineManufacturer.push_back("Microsoft");
+    productLineName.push_back("Zune");
+    productLineItemType.push_back("AM");
+    productLineManufacturer.push_back("Sylvania");
+    productLineName.push_back("SDVD1187");
+    productLineItemType.push_back("Vm");
     std::cout << "Production Line Tracker" << std::endl << std::endl;
-    showMenu();
-    getChoice();
+    bool continueProgram = true;
+    do {
+        showMenu();
+        int choice;
+        std::cin >> choice;
+        switch (choice) {
+            case 1 :
+                produceItems();
+                break;
+            case 2 :
+                std::cout << "Add Employee Account Stub" << std::endl;
+                break;
+            case 3 :
+
+                addNewProducts();
+                break;
+            case 4 :
+                std::cout << "Display Production Statistics Stub" << std::endl;
+                break;
+            case 5:
+                continueProgram = false;//Program ends
+                break;
+            default:
+                std::cout << "Not a valid selection" << std::endl;
+                showMenu();
+        }
+    } while (continueProgram);
 
 }
 
@@ -57,53 +94,40 @@ int showMenu() {
 
     std::cout << "1. Produce Items" << std::endl;
     std::cout << "2. Add Employee Account" << std::endl;
-    std::cout << "3. Add Music Player" << std::endl;
-    std::cout << "4. Add Movie Player" << std::endl;
-    std::cout << "5. Display Production Statistics" << std::endl;
-    std::cout << "6. Exit" << std::endl;
+    std::cout << "3. Add Product" << std::endl;
+    std::cout << "4. Display Production Statistics" << std::endl;
+    std::cout << "5. Exit" << std::endl;
 
     std::cout << "" << std::endl;
     return 0;
 
 }
 
-void getChoice() {
-    int choice;
-    std::cin >> choice;
-    switch (choice) {
-        case 1 :
-            std::cout << "Produce Items Stub" << std::endl;
-            addProduct();
-            break;
-        case 2 :
-            std::cout << "Add Employee Account Stub" << std::endl;
-            break;
-        case 3 :
-            std::cout << "Add Music Player Stub" << std::endl;
-            addNewProducts();
-            break;
-        case 4 :
-            std::cout << "Add Movie Player Stub" << std::endl;
-            addNewProducts();
-            break;
-        case 5 :
-            std::cout << "Display Production Statistics Stub" << std::endl;
-            break;
-        case 6:
-            exit; //Program ends
-            break;
-        default:
-            std::cout << "Not a valid selection" << std::endl;
-            showMenu();
+
+void produceItems() {
+
+    std::cout << "Choose product to produce: \n";
+    for (int i = 0; i < productLineManufacturer.size(); i++) {
+        std::cout << i + 1 << ". " << productLineManufacturer[i] << " ";
+        std::cout << productLineName[i] << " " << productLineItemType[i] << std::endl;
+    }
+    int productNum;
+    std::cin >> productNum;
+    std::cout << "Enter the number of product you want to produce: \n";
+    int numOfNewProduct;
+    std::cin >> numOfNewProduct;
+    for (int i = 0; i < productNum; i++) {
+
     }
 }
-void addProduct () {
+/*
+void oldAdd() {
     std::ofstream file;
-    file.open ("production.txt");
-    addProductMenu();
+    file.open("production.txt");
+    //addProductMenu();
     int selectProduct;
     std::cin >> selectProduct;
-    switch (selectProduct){
+    switch (selectProduct) {
         case 1:
             manufacturer = "Apple";
             productName = "iPod";
@@ -111,13 +135,13 @@ void addProduct () {
             manufacturerCode = "App";
             std::cout << "Number of products: \n";
             std::cin >> numberOfProducts;
-            for (int i=0; i <numberOfProducts; i++) {
+            for (int i = 0; i < numberOfProducts; i++) {
                 file << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
                 file << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
                 prodNum++;
                 audioSerialNum++;
             }
-            addProduct();
+            produceItems();
             break;
         case 2:
             manufacturer = "Microsoft";
@@ -126,13 +150,13 @@ void addProduct () {
             manufacturerCode = "Mic";
             std::cout << "Number of products: \n";
             std::cin >> numberOfProducts;
-            for (int i=0; i <numberOfProducts; i++) {
+            for (int i = 0; i < numberOfProducts; i++) {
                 file << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
                 file << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
                 prodNum++;
                 audioSerialNum++;
             }
-            addProduct();
+            produceItems();
             break;
 
         case 3:
@@ -142,13 +166,13 @@ void addProduct () {
             manufacturerCode = "Syl";
             std::cout << "Number of products: \n";
             std::cin >> numberOfProducts;
-            for (int i=0; i <numberOfProducts; i++) {
+            for (int i = 0; i < numberOfProducts; i++) {
                 file << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode << itemTypeCode;
                 file << std::setfill('0') << std::setw(5) << visualSerialNum << std::endl;
                 prodNum++;
                 visualSerialNum++;
             }
-            addProduct();
+            produceItems();
             break;
 
         case 4:
@@ -158,29 +182,14 @@ void addProduct () {
     }
     file.close();
 }
+*/
 
-void addProductMenu () {
-    std::cout << "Select your Product: " << std::endl;
-    std::cout << "1. Apple, iPod, AM \n2. Microsoft, Zune, AM \n3. Sylvania, SDVD1187, VM\n4.Main Menu\n";
-
-}
-
-void addNewProducts () {
-    std::cout << "Enter the number of new product you want to produce: \n";
-    int numOfNewProduct;
-    std::cin >> numOfNewProduct;
-    for (int i = 0; i < numOfNewProduct; i ++){
-        enterProductDetails ();
-    }
-}
-
-void enterProductDetails () {
+void addNewProducts() {
     std::cout << "Enter the Manufacturer: \n";
     std::cin >> manufacturer;
     std::cout << "Enter the Product Name \n";
     std::cin >> productName;
 
-    manufacturerCode = manufacturer.substr(0, 3);
 
     std::cout << "Enter the Item Type: \n";
     std::cout << "1. Audio\n2. Visual\n3. AudioMobile\n4. VisualMobile\n";
@@ -195,24 +204,9 @@ void enterProductDetails () {
     } else if (itemTypeChoice == 4) {
         itemTypeCode = "VM";
     }
+    productLineManufacturer.push_back(manufacturer);
+    productLineName.push_back(productName);
+    productLineItemType.push_back(itemTypeCode);
 
-
-    if (itemTypeCode == "MM" || itemTypeCode == "AM") {
-        std::cout << "Enter Number of product you want: \n";
-        std::cin>>numberOfProducts;
-        for (int i=0; i<numberOfProducts;i++ ) {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode
-                      << itemTypeCode << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
-            prodNum++;
-            audioSerialNum++;
-        }
-    } else if (itemTypeCode == "VI" || itemTypeCode == "VM") {
-        for (int i=0; i<numberOfProducts;i++ ) {
-            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode
-                      << itemTypeCode << std::setfill('0') << std::setw(5) << visualSerialNum << std::endl;
-            prodNum++;
-            visualSerialNum++;
-        }
-    }
 
 }
