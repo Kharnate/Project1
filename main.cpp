@@ -172,11 +172,8 @@ void addNewProducts () {
     for (int i = 0; i < numOfNewProduct; i ++){
         enterProductDetails ();
     }
-
-    showMenu();
-    getChoice;
-
 }
+
 void enterProductDetails () {
     std::cout << "Enter the Manufacturer: \n";
     std::cin >> manufacturer;
