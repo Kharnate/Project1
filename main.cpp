@@ -42,7 +42,7 @@ std::string manufacturer;
 std::string productName;
 int itemTypeChoice;
 std::string itemTypeCode;
-std::string manufacturerCode = manufacturer.substr(0, 3);
+std::string manufacturerCode;
 
 
 int main() {
@@ -98,9 +98,9 @@ void getChoice() {
     }
 }
 void addProduct () {
-    addProductMenu();
     std::ofstream file;
     file.open ("production.txt");
+    addProductMenu();
     int selectProduct;
     std::cin >> selectProduct;
     switch (selectProduct){
@@ -166,25 +166,56 @@ void addProductMenu () {
 }
 
 void addNewProducts () {
-    std::cout << "Enter the number of product you want to produce: \n";
+    std::cout << "Enter the number of new product you want to produce: \n";
     int numOfNewProduct;
     std::cin >> numOfNewProduct;
-    for (int i = 0; i = numOfNewProduct; i ++){
+    for (int i = 0; i < numOfNewProduct; i ++){
         enterProductDetails ();
     }
 
+    showMenu();
+    getChoice;
+
 }
-void enterProductDetails (){
+void enterProductDetails () {
     std::cout << "Enter the Manufacturer: \n";
     std::cin >> manufacturer;
     std::cout << "Enter the Product Name \n";
     std::cin >> productName;
 
+    manufacturerCode = manufacturer.substr(0, 3);
+
     std::cout << "Enter the Item Type: \n";
-    std::cout << "1. Audio\n2. Visual\n3. AudioMobile\n4. VisualMobile";
+    std::cout << "1. Audio\n2. Visual\n3. AudioMobile\n4. VisualMobile\n";
     std::cin >> itemTypeChoice;
 
+    if (itemTypeChoice == 1) {
+        itemTypeCode = "MM";
+    } else if (itemTypeChoice == 2) {
+        itemTypeCode = "VI";
+    } else if (itemTypeChoice == 3) {
+        itemTypeCode = "AM";
+    } else if (itemTypeChoice == 4) {
+        itemTypeCode = "VM";
+    }
+
+
+    if (itemTypeCode == "MM" || itemTypeCode == "AM") {
+        std::cout << "Enter Number of product you want: \n";
+        std::cin>>numberOfProducts;
+        for (int i=0; i<numberOfProducts;i++ ) {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode
+                      << itemTypeCode << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
+            prodNum++;
+            audioSerialNum++;
+        }
+    } else if (itemTypeCode == "VI" || itemTypeCode == "VM") {
+        for (int i=0; i<numberOfProducts;i++ ) {
+            std::cout << "Production Number: " << prodNum << " Serial Number: " << manufacturerCode
+                      << itemTypeCode << std::setfill('0') << std::setw(5) << visualSerialNum << std::endl;
+            prodNum++;
+            visualSerialNum++;
+        }
+    }
 
 }
-
-
