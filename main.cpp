@@ -19,19 +19,16 @@
 
 //Prototype
 int showMenu();
-
+void getChoice ();
 void produceItems();
 
 void addNewProducts();
 
+bool continueProgram = true;
+
 std::vector<std::string> productLineManufacturer;
 std::vector<std::string> productLineName;
 std::vector<std::string> productLineItemType;
-
-std::string manufacturer;
-std::string productName;
-int itemTypeChoice;
-std::string itemTypeCode;
 
 
 int main() {
@@ -46,35 +43,13 @@ int main() {
     productLineItemType.push_back("VM");
 
     std::cout << "Production Line Tracker" << std::endl << std::endl;
-    bool continueProgram = true;
 
     do {
         showMenu();
-        int choice;
-        std::cin >> choice;
-        switch (choice) {
-            case 1 :
-                produceItems();
-                break;
-            case 2 :
-                std::cout << "Add Employee Account Stub" << std::endl;
-                break;
-            case 3 :
-                addNewProducts();
-                break;
-            case 4 :
-                std::cout << "Display Production Statistics Stub" << std::endl;
-                break;
-            case 5:
-                continueProgram = false;//Program ends
-                break;
-            default:
-                std::cout << "Not a valid selection" << std::endl;
-        }
-    } while (continueProgram);
-
-
+        getChoice();
+    }while (continueProgram);
 }
+
 
 int showMenu() {
 
@@ -89,6 +64,30 @@ int showMenu() {
 
 }
 
+void getChoice () {
+    int choice;
+    std::cin >> choice;
+    switch (choice) {
+        case 1 :
+            produceItems();
+
+            break;
+        case 2 :
+            std::cout << "Add Employee Account Stub" << std::endl;
+            break;
+        case 3 :
+            addNewProducts();
+            break;
+        case 4 :
+            std::cout << "Display Production Statistics Stub" << std::endl;
+            break;
+        case 5:
+            continueProgram = false;//Program ends
+            break;
+        default:
+            std::cout << "Not a valid selection" << std::endl;
+    }
+}
 
 void produceItems() {
 
@@ -110,38 +109,41 @@ void produceItems() {
     std::cin >> numOfNewProduct;
     int trackNum = 1;
 
-
-    while (trackNum <= numOfNewProduct) {
+     while (trackNum <= numOfNewProduct) {
         if ((productLineItemType.begin(), productLineItemType.end(), "AM") ||
             (productLineItemType.begin(), productLineItemType.end(), "MM")) {
-            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,";
-            file << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1];
-            file << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0');
-            file << std::setw(5) << audioSerialNum << std::endl;
+            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
+             << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
+             << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
+             << std::setw(5) << audioSerialNum << std::endl;
             trackNum++;
             audioSerialNum++;
         } else if ((productLineItemType.begin(), productLineItemType.end(), "VI") ||
                    (productLineItemType.begin(), productLineItemType.end(), "VM")) {
-            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,";
-            file << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1];
-            file << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0');
-            file << std::setw(5) << visualSerialNum << std::endl;
+            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
+             << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
+             << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
+             << std::setw(5) << visualSerialNum << std::endl;
             trackNum++;
             visualSerialNum++;
         }
     }
 
-    file.close();
 }
 
 
 //Adding new items to the production list
 void addNewProducts() {
+
+    std::string manufacturer;
+    std::string productName;
+    std::string itemTypeCode;
+    int itemTypeChoice;
+
     std::cout << "Enter the Manufacturer: \n";
     std::cin >> manufacturer;
     std::cout << "Enter the Product Name \n";
     std::cin >> productName;
-
 
     std::cout << "Enter the Item Type: \n";
     std::cout << "1. Audio\n2. Visual\n3. AudioMobile\n4. VisualMobile\n";
