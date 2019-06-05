@@ -25,10 +25,16 @@ void produceItems();
 void addNewProducts();
 
 bool continueProgram = true;
+int audioSerialNum = 0;
+int visualSerialNum = 0;
+int trackNum = 1;
+
 
 std::vector<std::string> productLineManufacturer;
 std::vector<std::string> productLineName;
 std::vector<std::string> productLineItemType;
+
+
 
 
 int main() {
@@ -89,13 +95,10 @@ void getChoice () {
     }
 }
 
+
 void produceItems() {
-
     std::ofstream file;
-    file.open("production.txt");
-
-    int audioSerialNum = 0;
-    int visualSerialNum = 0;
+    file.open ("production.txt");
 
     std::cout << "Choose product to produce: \n";
     for (int i = 0; i < productLineManufacturer.size(); i++) {
@@ -107,9 +110,11 @@ void produceItems() {
     std::cout << "Enter the number of product you want to produce: \n";
     int numOfNewProduct;
     std::cin >> numOfNewProduct;
-    int trackNum = 1;
+     trackNum;
 
-     while (trackNum <= numOfNewProduct) {
+     int trackWhile = 1;
+
+     while (trackWhile <= numOfNewProduct) {
         if ((productLineItemType.begin(), productLineItemType.end(), "AM") ||
             (productLineItemType.begin(), productLineItemType.end(), "MM")) {
             file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
@@ -118,6 +123,7 @@ void produceItems() {
              << std::setw(5) << audioSerialNum << std::endl;
             trackNum++;
             audioSerialNum++;
+
         } else if ((productLineItemType.begin(), productLineItemType.end(), "VI") ||
                    (productLineItemType.begin(), productLineItemType.end(), "VM")) {
             file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
@@ -127,7 +133,10 @@ void produceItems() {
             trackNum++;
             visualSerialNum++;
         }
+        trackWhile ++;
     }
+
+
 
 }
 
