@@ -20,15 +20,13 @@
 //Prototype
 int showMenu();
 
-void getChoice();
-
 void produceItems();
 
 
 void addNewProducts();
 
 
-int prodNum = 1;
+
 int audioSerialNum = 0;
 int visualSerialNum = 0;
 
@@ -41,12 +39,6 @@ std::string manufacturer;
 std::string productName;
 int itemTypeChoice;
 std::string itemTypeCode;
-std::string manufacturerCode;
-
-std::vector<std::string> productNum;
-std::vector<std::string> productManufacturer;
-std::vector<std::string> productItemType;
-std::vector<std::string> serialNum;
 
 
 int main() {
@@ -58,9 +50,10 @@ int main() {
     productLineItemType.push_back("AM");
     productLineManufacturer.push_back("Sylvania");
     productLineName.push_back("SDVD1187");
-    productLineItemType.push_back("Vm");
+    productLineItemType.push_back("VM");
     std::cout << "Production Line Tracker" << std::endl << std::endl;
     bool continueProgram = true;
+
     do {
         showMenu();
         int choice;
@@ -73,7 +66,6 @@ int main() {
                 std::cout << "Add Employee Account Stub" << std::endl;
                 break;
             case 3 :
-
                 addNewProducts();
                 break;
             case 4 :
@@ -106,6 +98,7 @@ int showMenu() {
 
 void produceItems() {
 
+
     std::cout << "Choose product to produce: \n";
     for (int i = 0; i < productLineManufacturer.size(); i++) {
         std::cout << i + 1 << ". " << productLineManufacturer[i] << " ";
@@ -116,10 +109,34 @@ void produceItems() {
     std::cout << "Enter the number of product you want to produce: \n";
     int numOfNewProduct;
     std::cin >> numOfNewProduct;
-    for (int i = 0; i < productNum; i++) {
+    int trackNum = 1;
 
+    std::ofstream file;
+    file.open ("production.txt");
+
+    while (trackNum <= numOfNewProduct) {
+
+        if ((productLineItemType.begin (), productLineItemType.end(),  "AM") || (productLineItemType.begin(), productLineItemType.end(),  "MM")) {
+            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,";
+            file << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1];
+            file << " Serial Number: "<< productLineManufacturer[productNum-1].substr(0,3) << std::setfill ('0');
+            file << std::setw (5) << audioSerialNum << std::endl;
+            trackNum++;
+            audioSerialNum++;
+        }
+        else if ((productLineItemType.begin (), productLineItemType.end(),  "VI") || (productLineItemType.begin(), productLineItemType.end(),  "VM")) {
+            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,";
+            file << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1];
+            file << " Serial Number: "<< productLineManufacturer[productNum-1].substr(0,3) << std::setfill ('0');
+            file << std::setw (5) << visualSerialNum << std::endl;
+            trackNum++;
+            visualSerialNum++;
+        }
     }
+    file.close();
 }
+
+
 /*
 void oldAdd() {
     std::ofstream file;
@@ -183,7 +200,7 @@ void oldAdd() {
     file.close();
 }
 */
-
+ //Adding new items to the production list
 void addNewProducts() {
     std::cout << "Enter the Manufacturer: \n";
     std::cin >> manufacturer;
@@ -208,5 +225,5 @@ void addNewProducts() {
     productLineName.push_back(productName);
     productLineItemType.push_back(itemTypeCode);
 
-
 }
+
