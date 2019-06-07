@@ -3,7 +3,9 @@
 /**@file main.cpp
  * @brief Entire media player production program (for now)
  *
- *  This program helps to keep track the production and creates a serial number for each product type.
+ *  This program helps to keep track on the production.
+ *  Creates a serial number for each product type you produce.
+ *  Create employee's account.
  *
  * @author Karan Patel
  * @bug
@@ -20,9 +22,13 @@
 
 //Prototype
 int showMenu();
+
 void getChoice();
+
 void produceItems();
+
 void addNewProducts();
+
 void addEmployeeDetails();
 
 bool continueProgram = true;
@@ -51,9 +57,15 @@ int main() {
     do {
         showMenu();
         getChoice();
-    }while (continueProgram);
+    } while (continueProgram);
 }
 
+/**
+ * Menu where the items are added, produce.
+ * Create and see employee account using username and password.
+ * Everything is done using this menu.
+ * @return
+ */
 int showMenu() {
 
     std::cout << "1. Produce Items" << std::endl;
@@ -67,7 +79,7 @@ int showMenu() {
 
 }
 
-void getChoice () {
+void getChoice() {
     int choice;
     std::cin >> choice;
     switch (choice) {
@@ -75,7 +87,7 @@ void getChoice () {
             produceItems();
             break;
         case 2 :
-            addEmployeeDetails ();
+            addEmployeeDetails();
             break;
         case 3 :
             addNewProducts();
@@ -91,9 +103,15 @@ void getChoice () {
     }
 }
 
+/**
+ * When the user enters 1 from the main menu
+ * This function allows user to produce number of items.
+ * It then creates a specific serial number of that item type.
+ * It also keeps track on how many total items are produced.
+ */
 void produceItems() {
     std::ofstream file;
-    file.open ("production.txt");
+    file.open("production.txt");
 
     std::cout << "Choose product to produce: \n";
     for (int i = 0; i < productLineManufacturer.size(); i++) {
@@ -105,34 +123,39 @@ void produceItems() {
     std::cout << "Enter the number of product you want to produce: \n";
     int numOfNewProduct;
     std::cin >> numOfNewProduct;
-     trackNum;
+    trackNum;
 
-     int trackWhile = 1;
+    int trackWhile = 1;
 
-     while (trackWhile <= numOfNewProduct) {
+    while (trackWhile <= numOfNewProduct) {
         if ((productLineItemType.begin(), productLineItemType.end(), "AM") ||
             (productLineItemType.begin(), productLineItemType.end(), "MM")) {
             file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
-             << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
-             << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
-             << std::setw(5) << audioSerialNum << std::endl;
+                 << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
+                 << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
+                 << std::setw(5) << audioSerialNum << std::endl;
             trackNum++;
             audioSerialNum++;
 
         } else if ((productLineItemType.begin(), productLineItemType.end(), "VI") ||
                    (productLineItemType.begin(), productLineItemType.end(), "VM")) {
             file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
-             << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
-             << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
-             << std::setw(5) << visualSerialNum << std::endl;
+                 << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
+                 << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
+                 << std::setw(5) << visualSerialNum << std::endl;
             trackNum++;
             visualSerialNum++;
         }
-        trackWhile ++;
+        trackWhile++;
     }
 }
 
 //Adding new items to the production list
+/**
+ * Add new items to the product line.
+ * If the user or customer want to a new item to produce from this company
+ * it can be done here.
+ */
 void addNewProducts() {
 
     std::string manufacturer;
@@ -164,7 +187,12 @@ void addNewProducts() {
 
 }
 
-void addEmployeeDetails () {
+/**
+ * Enter employee's first and last name.
+ * It generates username for that employee.
+ * Employee can also enter password to keep track on his items.
+ */
+void addEmployeeDetails() {
 
     std::cout << "Enter employee's full name \n ";
 
