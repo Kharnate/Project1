@@ -16,25 +16,23 @@
 #include <iomanip>
 #include <stdio.h>
 #include <vector>
+#include <algorithm>
 
 //Prototype
 int showMenu();
-void getChoice ();
+void getChoice();
 void produceItems();
-
 void addNewProducts();
+void addEmployeeDetails();
 
 bool continueProgram = true;
 int audioSerialNum = 0;
 int visualSerialNum = 0;
 int trackNum = 1;
 
-
 std::vector<std::string> productLineManufacturer;
 std::vector<std::string> productLineName;
 std::vector<std::string> productLineItemType;
-
-
 
 
 int main() {
@@ -56,13 +54,12 @@ int main() {
     }while (continueProgram);
 }
 
-
 int showMenu() {
 
     std::cout << "1. Produce Items" << std::endl;
     std::cout << "2. Add Employee Account" << std::endl;
     std::cout << "3. Add Product" << std::endl;
-    std::cout << "4. Display Production Statistics" << std::endl;
+    std::cout << "4. Display Production Statistics" << std::endl;\
     std::cout << "5. Exit" << std::endl;
 
     std::cout << "" << std::endl;
@@ -76,10 +73,9 @@ void getChoice () {
     switch (choice) {
         case 1 :
             produceItems();
-
             break;
         case 2 :
-            std::cout << "Add Employee Account Stub" << std::endl;
+            addEmployeeDetails ();
             break;
         case 3 :
             addNewProducts();
@@ -87,14 +83,13 @@ void getChoice () {
         case 4 :
             std::cout << "Display Production Statistics Stub" << std::endl;
             break;
-        case 5:
+        case 5 :
             continueProgram = false;//Program ends
             break;
         default:
             std::cout << "Not a valid selection" << std::endl;
     }
 }
-
 
 void produceItems() {
     std::ofstream file;
@@ -135,11 +130,7 @@ void produceItems() {
         }
         trackWhile ++;
     }
-
-
-
 }
-
 
 //Adding new items to the production list
 void addNewProducts() {
@@ -173,3 +164,56 @@ void addNewProducts() {
 
 }
 
+void addEmployeeDetails () {
+
+    std::cout << "Enter employee's full name \n ";
+
+    std::string first_name;
+    std::cin >> first_name;
+    std::string last_name;
+    std::cin >> last_name;
+    std::string user_name;
+
+    // create user name in proper format
+    std::transform(first_name.begin(), first_name.end(), first_name.begin(), ::tolower);
+    std::transform(last_name.begin(), last_name.end(), last_name.begin(), ::tolower);
+
+    char firstName = first_name[0];
+    user_name = firstName + last_name;
+
+    std::cout << "User name: " + user_name + "\n";
+
+    bool valid;
+    bool lower = false;
+    bool upper = false;
+    bool digit = false;
+    std::cout << "Enter employee's password.\n";
+    std::cout << "Must contain a number and lowercase and uppercase letters.\n";
+
+    const int SIZE = 30;
+    char password[SIZE];
+
+    std::cin >> password;
+
+    // code to check if valid
+    for (int i = 0; password[i]; i++) {
+        if (isupper(password[i])) {
+            upper = true;
+        } else if (islower(password[i])) {
+            lower = true;
+        } else if (isdigit(password[i])) {
+            digit = true;
+        }
+    }
+    if (upper == true && lower == true && digit == true) {
+        valid = true;
+    } else {
+        valid = false;
+    }
+
+    if (valid) {
+        std::cout << "Employee's account is set\n";
+    } else {
+        std::cout << "invalid\n";
+    }
+}
