@@ -132,44 +132,43 @@ void produceItems(const std::vector<Product>& products) {
     std::cin >> numOfNewProduct;
     trackNum;
 
-    int trackWhile = 1;
 
-    while (trackWhile <= numOfNewProduct) {
 
-        if (products.begin(), products.end(), "AM") {
-            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-            products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
-            products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
-        trackNum++;
-        audioSerialNum++;
+    for (int i=0; i <= products.size(); i++) {
+        if (products[i].itemType == "AM") {
+            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
+                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
+                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
+            trackNum++;
+            audioSerialNum++;
         }
-        else if (products.begin(), products.end(), "MM") {
-            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-                      products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
-                      products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw << audioMobileSerailNum << std::endl;
+        else if (products[i].itemType == "MM") {
+            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
+                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
+                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << audioMobileSerailNum << std::endl;
             trackNum++;
             audioMobileSerailNum++;
         }
-        else if (products.begin(), products.end(), "VI") {
-            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-                      products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
-                      products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw << visualSerialNum << std::endl;
+        else if (products[i].itemType == "VI") {
+            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
+                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
+                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << visualSerialNum << std::endl;
             trackNum++;
             visualSerialNum++;
         }
-        else if (products.begin(), products.end(), "VM") {
-            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-                      products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
-                      products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw << visualMobileSerilaNum << std::endl;
+        else if (products[i].itemType == "VM"){
+            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
+                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
+                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << visualMobileSerilaNum << std::endl;
             trackNum++;
             visualMobileSerilaNum++;
         }
 
+    }
 
 
 
 
-    trackWhile++;
         /*
         if ((productLineItemType.begin(), productLineItemType.end(), "AM") ||
             (productLineItemType.begin(), productLineItemType.end(), "MM")) {
@@ -192,7 +191,7 @@ void produceItems(const std::vector<Product>& products) {
         trackWhile++;
         */
     }
-}
+
 
 
 //Adding new items to the production list
