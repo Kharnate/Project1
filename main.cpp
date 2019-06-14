@@ -25,32 +25,39 @@ int showMenu();
 
 void getChoice();
 
-void produceItems();
+
 
 void addNewProducts();
 
 void addEmployeeDetails();
 
 bool continueProgram = true;
-int audioSerialNum = 0;
-int visualSerialNum = 0;
+int audioSerialNum = 0; //AM
+int audioMobileSerailNum = 0; //MM
+int visualSerialNum = 0; //VI
+int visualMobileSerilaNum = 0; //VM
 int trackNum = 1;
 
-std::vector<std::string> productLineManufacturer;
-std::vector<std::string> productLineName;
-std::vector<std::string> productLineItemType;
+struct Product {
+    std::string manufacturer;
+    std::string name;
+    std::string itemType;
+};
+
+//products is a vector that stores all products (Product) struct details (manufacturer, name and item type)
+std::vector <Product> products;
+
+void addNewProducts (std::vector<Product>&);
+void produceItems(const std::vector<Product> &);
 
 
 int main() {
-    productLineManufacturer.push_back("Apple");
-    productLineName.push_back("iPod");
-    productLineItemType.push_back("AM");
-    productLineManufacturer.push_back("Microsoft");
-    productLineName.push_back("Zune");
-    productLineItemType.push_back("AM");
-    productLineManufacturer.push_back("Sylvania");
-    productLineName.push_back("SDVD1187");
-    productLineItemType.push_back("VM");
+    Product Apple = {"Apple", "iPod", "AM"};
+    products.push_back (Apple);
+    Product Microsoft = {"Microsoft", "Zune", "AM"};
+    products.push_back (Microsoft);
+    Product Sylvania = {"Sylvania", "SDVD1187", "VM"};
+    products.push_back (Sylvania);
 
     std::cout << "Production Line Tracker" << std::endl << std::endl;
 
@@ -84,13 +91,13 @@ void getChoice() {
     std::cin >> choice;
     switch (choice) {
         case 1 :
-            produceItems();
+            produceItems(products);
             break;
         case 2 :
             addEmployeeDetails();
             break;
         case 3 :
-            addNewProducts();
+            addNewProducts(products);
             break;
         case 4 :
             std::cout << "Display Production Statistics Stub" << std::endl;
@@ -109,14 +116,14 @@ void getChoice() {
  * It then creates a specific serial number of that item type.
  * It also keeps track on how many total items are produced.
  */
-void produceItems() {
+void produceItems(const std::vector<Product>& products) {
     std::ofstream file;
     file.open("production.txt");
 
     std::cout << "Choose product to produce: \n";
-    for (int i = 0; i < productLineManufacturer.size(); i++) {
-        std::cout << i + 1 << ". " << productLineManufacturer[i] << " ";
-        std::cout << productLineName[i] << " " << productLineItemType[i] << std::endl;
+    for (int i = 0; i < products.size(); i++) {
+        std::cout << i + 1 << ". " << products[i].manufacturer << " " <<
+                  products[i].name << " " << products[i].itemType << std::endl;
     }
     int productNum;
     std::cin >> productNum;
@@ -128,6 +135,42 @@ void produceItems() {
     int trackWhile = 1;
 
     while (trackWhile <= numOfNewProduct) {
+
+        if (products.begin(), products.end(), "AM") {
+            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+            products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
+            products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
+        trackNum++;
+        audioSerialNum++;
+        }
+        else if (products.begin(), products.end(), "MM") {
+            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+                      products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
+                      products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw << audioMobileSerailNum << std::endl;
+            trackNum++;
+            audioMobileSerailNum++;
+        }
+        else if (products.begin(), products.end(), "VI") {
+            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+                      products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
+                      products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw << visualSerialNum << std::endl;
+            trackNum++;
+            visualSerialNum++;
+        }
+        else if (products.begin(), products.end(), "VM") {
+            std::cout << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+                      products[productNum-1].name << ", " << products[productNum-1].itemType << " Serial Number: " <<
+                      products[productNum-1].manufacturer.substr(0,3) << std::setfill('0') << std::setw << visualMobileSerilaNum << std::endl;
+            trackNum++;
+            visualMobileSerilaNum++;
+        }
+
+
+
+
+
+    trackWhile++;
+        /*
         if ((productLineItemType.begin(), productLineItemType.end(), "AM") ||
             (productLineItemType.begin(), productLineItemType.end(), "MM")) {
             file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
@@ -147,8 +190,10 @@ void produceItems() {
             visualSerialNum++;
         }
         trackWhile++;
+        */
     }
 }
+
 
 //Adding new items to the production list
 /**
@@ -156,7 +201,7 @@ void produceItems() {
  * If the user or customer want to a new item to produce from this company
  * it can be done here.
  */
-void addNewProducts() {
+void addNewProducts(std::vector<Product>& products) {
 
     std::string manufacturer;
     std::string productName;
@@ -181,11 +226,22 @@ void addNewProducts() {
     } else if (itemTypeChoice == 4) {
         itemTypeCode = "VM";
     }
-    productLineManufacturer.push_back(manufacturer);
-    productLineName.push_back(productName);
-    productLineItemType.push_back(itemTypeCode);
+    Product newProduct;
+    newProduct.manufacturer = manufacturer;
+    newProduct.name = productName;
+    newProduct.itemType= itemTypeCode;
+
+    products.push_back (newProduct);
 
 }
+/*
+void print_product_line(const vector<Product> &products){
+
+    for (int i=0; i< products.size(); i++) {
+        std::cout << products[i].manufacturer << " " << products[i].name << " " << products [i].itemType << endl;
+    }
+}
+*/
 
 /**
  * Enter employee's first and last name.
@@ -235,6 +291,7 @@ void addEmployeeDetails() {
     }
     if (upper == true && lower == true && digit == true) {
         valid = true;
+        std::cout << "Employee's account is set\n";
     } else {
         valid = false;
     }
@@ -242,6 +299,8 @@ void addEmployeeDetails() {
     if (valid) {
         std::cout << "Employee's account is set\n";
     } else {
-        std::cout << "invalid\n";
+        std::cout << "invalid\n Enter the password again\n";
+        std::cin >> password;
+
     }
 }
