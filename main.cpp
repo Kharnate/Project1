@@ -25,7 +25,7 @@ int showMenu();
 
 void getChoice();
 
-
+void displayProduction ();
 
 void addNewProducts();
 
@@ -100,7 +100,7 @@ void getChoice() {
             addNewProducts(products);
             break;
         case 4 :
-            std::cout << "Display Production Statistics Stub" << std::endl;
+            displayProduction();
             break;
         case 5 :
             continueProgram = false;//Program ends
@@ -132,67 +132,66 @@ void produceItems(const std::vector<Product>& products) {
     std::cin >> numOfNewProduct;
     trackNum;
 
+    int trackWhile = 0;
 
-
-    for (int i=0; i <= products.size(); i++) {
-        if (products[i].itemType == "AM") {
-            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
-                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
-                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << audioSerialNum << std::endl;
+    while (trackWhile < numOfNewProduct) {
+        if (products[productNum - 1].itemType == "AM") {
+            if (audioSerialNum >= audioMobileSerailNum) {
+                audioSerialNum = audioSerialNum;
+            } else {
+                audioSerialNum = audioMobileSerailNum;
+            }
+            file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                      <<
+                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                      << audioSerialNum << std::endl;
             trackNum++;
             audioSerialNum++;
-        }
-        else if (products[i].itemType == "MM") {
-            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
-                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
-                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << audioMobileSerailNum << std::endl;
+        } else if (products[productNum - 1].itemType == "MM") {
+            if (audioMobileSerailNum >= audioSerialNum) {
+                audioMobileSerailNum = audioMobileSerailNum;
+            } else {
+                audioMobileSerailNum = audioSerialNum;
+            }
+            file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                      <<
+                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                      << audioMobileSerailNum << std::endl;
             trackNum++;
             audioMobileSerailNum++;
-        }
-        else if (products[i].itemType == "VI") {
-            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
-                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
-                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << visualSerialNum << std::endl;
+        } else if (products[productNum - 1].itemType == "VI") {
+            if (visualSerialNum >= visualMobileSerilaNum) {
+                visualSerialNum = visualSerialNum;
+            } else {
+                visualSerialNum = visualMobileSerilaNum;
+            }
+            file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                      <<
+                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                      << visualSerialNum << std::endl;
             trackNum++;
             visualSerialNum++;
-        }
-        else if (products[i].itemType == "VM"){
-            std::cout << trackNum << ". " << products[i].manufacturer << ", " <<
-                      products[i].name << ", " << products[i].itemType << " Serial Number: " <<
-                      products[i].manufacturer.substr(0,3) << std::setfill('0') << std::setw(5) << visualMobileSerilaNum << std::endl;
+        } else if (products[productNum - 1].itemType == "VM") {
+            if (visualMobileSerilaNum >= visualSerialNum) {
+                visualMobileSerilaNum = visualMobileSerilaNum;
+            } else {
+                visualMobileSerilaNum = visualSerialNum;
+            }
+            file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
+                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                      <<
+                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                      << visualMobileSerilaNum << std::endl;
             trackNum++;
             visualMobileSerilaNum++;
         }
-
-    }
-
-
-
-
-        /*
-        if ((productLineItemType.begin(), productLineItemType.end(), "AM") ||
-            (productLineItemType.begin(), productLineItemType.end(), "MM")) {
-            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
-                 << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
-                 << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
-                 << std::setw(5) << audioSerialNum << std::endl;
-            trackNum++;
-            audioSerialNum++;
-
-        } else if ((productLineItemType.begin(), productLineItemType.end(), "VI") ||
-                   (productLineItemType.begin(), productLineItemType.end(), "VM")) {
-            file << trackNum << ". " << productLineManufacturer[productNum - 1] << " ,"
-                 << productLineName[productNum - 1] << ", " << productLineItemType[productNum - 1]
-                 << " Serial Number: " << productLineManufacturer[productNum - 1].substr(0, 3) << std::setfill('0')
-                 << std::setw(5) << visualSerialNum << std::endl;
-            trackNum++;
-            visualSerialNum++;
-        }
         trackWhile++;
-        */
+
     }
-
-
+}
 
 //Adding new items to the production list
 /**
@@ -200,7 +199,7 @@ void produceItems(const std::vector<Product>& products) {
  * If the user or customer want to a new item to produce from this company
  * it can be done here.
  */
-void addNewProducts(std::vector<Product>& products) {
+void addNewProducts(std::vector<Product>& products){
 
     std::string manufacturer;
     std::string productName;
@@ -233,14 +232,7 @@ void addNewProducts(std::vector<Product>& products) {
     products.push_back (newProduct);
 
 }
-/*
-void print_product_line(const vector<Product> &products){
 
-    for (int i=0; i< products.size(); i++) {
-        std::cout << products[i].manufacturer << " " << products[i].name << " " << products [i].itemType << endl;
-    }
-}
-*/
 
 /**
  * Enter employee's first and last name.
@@ -302,4 +294,13 @@ void addEmployeeDetails() {
         std::cin >> password;
 
     }
+}
+
+void displayProduction () {
+    std::cout << "Production Track: \n";
+    std::cout << "Audio: " << audioSerialNum << std::endl;
+    std::cout << "Audio Mobile: " << audioMobileSerailNum << std::endl;
+    std::cout << "Visual: " << visualSerialNum << std::endl;
+    std::cout << "Visial Mobile: " << visualMobileSerilaNum << std::endl;
+
 }
