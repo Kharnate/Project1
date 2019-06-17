@@ -25,7 +25,7 @@ int showMenu();
 
 void getChoice();
 
-void displayProduction ();
+void displayProduction();
 
 void addNewProducts();
 
@@ -45,19 +45,20 @@ struct Product {
 };
 
 //products is a vector that stores all products (Product) struct details (manufacturer, name and item type)
-std::vector <Product> products;
+std::vector<Product> products;
 
-void addNewProducts (std::vector<Product>&);
+void addNewProducts(std::vector<Product> &);
+
 void produceItems(const std::vector<Product> &);
 
 
 int main() {
     Product Apple = {"Apple", "iPod", "AM"};
-    products.push_back (Apple);
+    products.push_back(Apple);
     Product Microsoft = {"Microsoft", "Zune", "AM"};
-    products.push_back (Microsoft);
+    products.push_back(Microsoft);
     Product Sylvania = {"Sylvania", "SDVD1187", "VM"};
-    products.push_back (Sylvania);
+    products.push_back(Sylvania);
 
     std::cout << "Production Line Tracker" << std::endl << std::endl;
 
@@ -116,7 +117,7 @@ void getChoice() {
  * It then creates a specific serial number of that item type.
  * It also keeps track on how many total items are produced.
  */
-void produceItems(const std::vector<Product>& products) {
+void produceItems(const std::vector<Product> &products) {
     std::ofstream file;
     file.open("production.txt");
 
@@ -142,10 +143,10 @@ void produceItems(const std::vector<Product>& products) {
                 audioSerialNum = audioMobileSerailNum;
             }
             file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
-                      <<
-                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                      << audioSerialNum << std::endl;
+                 products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                 <<
+                 products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                 << audioSerialNum << std::endl;
             trackNum++;
             audioSerialNum++;
         } else if (products[productNum - 1].itemType == "MM") {
@@ -155,10 +156,10 @@ void produceItems(const std::vector<Product>& products) {
                 audioMobileSerailNum = audioSerialNum;
             }
             file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
-                      <<
-                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                      << audioMobileSerailNum << std::endl;
+                 products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                 <<
+                 products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                 << audioMobileSerailNum << std::endl;
             trackNum++;
             audioMobileSerailNum++;
         } else if (products[productNum - 1].itemType == "VI") {
@@ -168,10 +169,10 @@ void produceItems(const std::vector<Product>& products) {
                 visualSerialNum = visualMobileSerilaNum;
             }
             file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
-                      <<
-                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                      << visualSerialNum << std::endl;
+                 products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                 <<
+                 products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                 << visualSerialNum << std::endl;
             trackNum++;
             visualSerialNum++;
         } else if (products[productNum - 1].itemType == "VM") {
@@ -181,10 +182,10 @@ void produceItems(const std::vector<Product>& products) {
                 visualMobileSerilaNum = visualSerialNum;
             }
             file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
-                      products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
-                      <<
-                      products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                      << visualMobileSerilaNum << std::endl;
+                 products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
+                 <<
+                 products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
+                 << visualMobileSerilaNum << std::endl;
             trackNum++;
             visualMobileSerilaNum++;
         }
@@ -199,7 +200,7 @@ void produceItems(const std::vector<Product>& products) {
  * If the user or customer want to a new item to produce from this company
  * it can be done here.
  */
-void addNewProducts(std::vector<Product>& products){
+void addNewProducts(std::vector<Product> &products) {
 
     std::string manufacturer;
     std::string productName;
@@ -227,9 +228,9 @@ void addNewProducts(std::vector<Product>& products){
     Product newProduct;
     newProduct.manufacturer = manufacturer;
     newProduct.name = productName;
-    newProduct.itemType= itemTypeCode;
+    newProduct.itemType = itemTypeCode;
 
-    products.push_back (newProduct);
+    products.push_back(newProduct);
 
 }
 
@@ -296,7 +297,7 @@ void addEmployeeDetails() {
     }
 }
 
-void displayProduction () {
+void displayProduction() {
     std::cout << "Production Track: \n";
     std::cout << "Audio: " << audioSerialNum << std::endl;
     std::cout << "Audio Mobile: " << audioMobileSerailNum << std::endl;
