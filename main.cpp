@@ -35,7 +35,7 @@ bool continueProgram = true;
 int audioSerialNum = 0; //AM
 int audioMobileSerailNum = 0; //MM
 int visualSerialNum = 0; //VI
-int visualMobileSerilaNum = 0; //VM
+int visualMobileSerialNum = 0; //VM
 int trackNum = 1;
 
 struct Product {
@@ -131,7 +131,6 @@ void produceItems(const std::vector<Product> &products) {
     std::cout << "Enter the number of product you want to produce: \n";
     int numOfNewProduct;
     std::cin >> numOfNewProduct;
-    trackNum;
 
     int trackWhile = 0;
 
@@ -163,10 +162,10 @@ void produceItems(const std::vector<Product> &products) {
             trackNum++;
             audioMobileSerailNum++;
         } else if (products[productNum - 1].itemType == "VI") {
-            if (visualSerialNum >= visualMobileSerilaNum) {
+            if (visualSerialNum >= visualMobileSerialNum) {
                 visualSerialNum = visualSerialNum;
             } else {
-                visualSerialNum = visualMobileSerilaNum;
+                visualSerialNum = visualMobileSerialNum;
             }
             file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
                  products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
@@ -176,18 +175,18 @@ void produceItems(const std::vector<Product> &products) {
             trackNum++;
             visualSerialNum++;
         } else if (products[productNum - 1].itemType == "VM") {
-            if (visualMobileSerilaNum >= visualSerialNum) {
-                visualMobileSerilaNum = visualMobileSerilaNum;
+            if (visualMobileSerialNum >= visualSerialNum) {
+                visualMobileSerialNum = visualMobileSerialNum;
             } else {
-                visualMobileSerilaNum = visualSerialNum;
+                visualMobileSerialNum = visualSerialNum;
             }
             file << trackNum << ". " << products[productNum - 1].manufacturer << ", " <<
                  products[productNum - 1].name << ", " << products[productNum - 1].itemType << " Serial Number: "
                  <<
                  products[productNum - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                 << visualMobileSerilaNum << std::endl;
+                 << visualMobileSerialNum << std::endl;
             trackNum++;
-            visualMobileSerilaNum++;
+            visualMobileSerialNum++;
         }
         trackWhile++;
 
@@ -302,6 +301,6 @@ void displayProduction() {
     std::cout << "Audio: " << audioSerialNum << std::endl;
     std::cout << "Audio Mobile: " << audioMobileSerailNum << std::endl;
     std::cout << "Visual: " << visualSerialNum << std::endl;
-    std::cout << "Visial Mobile: " << visualMobileSerilaNum << std::endl;
+    std::cout << "Visial Mobile: " << visualMobileSerialNum << std::endl;
 
 }
