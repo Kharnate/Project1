@@ -77,7 +77,7 @@ int show_menu() {
     std::cout << "1. Produce Items" << std::endl;
     std::cout << "2. Add Employee Account" << std::endl;
     std::cout << "3. Add Product" << std::endl;
-    std::cout << "4. Display Production Statistics" << std::endl;\
+    std::cout << "4. Display Production Statistics" << std::endl;
     std::cout << "5. Exit" << std::endl;
 
     std::cout << "" << std::endl;
@@ -121,12 +121,12 @@ void produce_items(const std::vector<Product> &products) {
     file.open("production.txt", std::ios::app); // std::ios::app appends to the file
 
     std::ofstream product_line_file;
-    product_line_file.open ("product_line.txt", std::ios::app);
+    product_line_file.open("product_line.txt", std::ios::app);
 
     std::cout << "Choose product to produce: \n";
     for (int i = 0; i < products.size(); i++) {
         product_line_file << i + 1 << ". " << products[i].manufacturer << " " <<
-                  products[i].name << " " << products[i].itemType << std::endl;
+                          products[i].name << " " << products[i].itemType << std::endl;
     }
     int product_number;
     std::cin >> product_number;
@@ -144,7 +144,8 @@ void produce_items(const std::vector<Product> &products) {
                 audio_serial_number = audio_mobile_serial_number;
             }
             file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
-                 products[product_number - 1].name << ", " << products[product_number - 1].itemType << " Serial Number: "
+                 products[product_number - 1].name << ", " << products[product_number - 1].itemType
+                 << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
                  << audio_serial_number << std::endl;
@@ -157,7 +158,8 @@ void produce_items(const std::vector<Product> &products) {
                 audio_mobile_serial_number = audio_serial_number;
             }
             file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
-                 products[product_number - 1].name << ", " << products[product_number - 1].itemType << " Serial Number: "
+                 products[product_number - 1].name << ", " << products[product_number - 1].itemType
+                 << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
                  << audio_mobile_serial_number << std::endl;
@@ -170,7 +172,8 @@ void produce_items(const std::vector<Product> &products) {
                 visual_serial_number = visual_mobile_serial_number;
             }
             file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
-                 products[product_number - 1].name << ", " << products[product_number - 1].itemType << " Serial Number: "
+                 products[product_number - 1].name << ", " << products[product_number - 1].itemType
+                 << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
                  << visual_serial_number << std::endl;
@@ -183,7 +186,8 @@ void produce_items(const std::vector<Product> &products) {
                 visual_mobile_serial_number = visual_serial_number;
             }
             file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
-                 products[product_number - 1].name << ", " << products[product_number - 1].itemType << " Serial Number: "
+                 products[product_number - 1].name << ", " << products[product_number - 1].itemType
+                 << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
                  << visual_mobile_serial_number << std::endl;
@@ -244,7 +248,7 @@ void add_new_products(std::vector<Product> &products) {
 void set_employee_account() {
 
     std::ofstream employee_account_file;
-    employee_account_file.open ("employee.txt", std::ios::app);
+    employee_account_file.open("employee.txt", std::ios::app);
 
     std::cout << "Enter employee's full name \n ";
 
@@ -263,7 +267,6 @@ void set_employee_account() {
 
     std::cout << "User name: " + user_name + "\n";
 
-    bool valid;
     bool lower = false;
     bool upper = false;
     bool digit = false;
@@ -286,18 +289,10 @@ void set_employee_account() {
         }
     }
     if (upper == true && lower == true && digit == true) {
-        valid = true;
-        std::cout << "Employee's account is set\n";
-    } else {
-        valid = false;
-    }
-
-    if (valid) {
         std::cout << "Employee's account is set\n";
     } else {
         std::cout << "invalid\n Enter the password again\n";
         std::cin >> password;
-
     }
 
     employee_account_file << first_name << ", " << last_name << "\t" << user_name << ", " << password << std::endl;
