@@ -8,7 +8,7 @@
  *  Create employee's account.
  *
  * @author Karan Patel
- * @bug
+ * @bug Few
  */
 
 
@@ -25,16 +25,18 @@ int show_menu();
 
 void get_choice();
 
-void display_production();
-
 void set_employee_account();
 
 bool continue_program = true;
-int audio_serial_number = 0; //AM
-int audio_mobile_serial_number = 0; //MM
-int visual_serial_number = 0; //VI
-int visual_mobile_serial_number = 0; //VM
-int track_number = 1;
+
+struct product_stats {
+    int audio_serial_number = 0; //AM
+    int audio_mobile_serial_number = 0; //MM
+    int visual_serial_number = 0; //VI
+    int visual_mobile_serial_number = 0; //VM
+    int track_number = 1;
+};
+product_stats stats;
 
 struct Product {
     std::string manufacturer;
@@ -42,15 +44,24 @@ struct Product {
     std::string itemType;
 };
 
+struct employee {
+    std::string first_name;
+    std::string last_name;
+    std::string user_name;
+    std::string password;
+};
+
 //products is a vector that stores all products (Product) struct details (manufacturer, name and item type)
 std::vector<Product> products;
 
 void add_new_products(std::vector<Product> &);
 
-void produce_items(const std::vector<Product> &);
+void produce_items(const std::vector<Product> &, struct product_stats stats);
 
+void display_production(struct product_stats stats);
 
 int main() {
+
     Product Apple = {"Apple", "iPod", "AM"};
     products.push_back(Apple);
     Product Microsoft = {"Microsoft", "Zune", "AM"};
@@ -64,12 +75,13 @@ int main() {
         show_menu();
         get_choice();
     } while (continue_program);
+
 }
 
 /**
- * Menu where the items are added, produce.
- * Create and see employee account using username and password.
+ * @brief Menu where the user can add new products to catalog, produce item with unique serial number, add employee details and check production stats.
  * Everything is done using this menu.
+ * @parm
  * @return
  */
 int show_menu() {
@@ -85,12 +97,17 @@ int show_menu() {
 
 }
 
+/**@brief This function gives the user choice to pick the item from the menu.
+ * As soon as you type of choice the function leads to another function to process your choice.
+ * @param
+ * @return
+ */
 void get_choice() {
     int choice;
     std::cin >> choice;
     switch (choice) {
         case 1 :
-            produce_items(products);
+            produce_items(products, stats);
             break;
         case 2 :
             set_employee_account();
@@ -99,7 +116,7 @@ void get_choice() {
             add_new_products(products);
             break;
         case 4 :
-            display_production();
+            display_production(stats);
             break;
         case 5 :
             continue_program = false;//Program ends
@@ -110,18 +127,27 @@ void get_choice() {
 }
 
 /**
- * When the user enters 1 from the main menu
+ * @breif When the user enters 1 from the main menu
  * This function allows user to produce number of items.
  * It then creates a specific serial number of that item type.
  * It also keeps track on how many total items are produced.
+ * @param product & struct
+ * @return
  */
-void produce_items(const std::vector<Product> &products) {
+void produce_items(const std::vector<Product> &products, struct product_stats stats) {
 
     std::ofstream file;
     file.open("production.txt", std::ios::app); // std::ios::app appends to the file
 
-    std::ofstream product_line_file;
-    product_line_file.open("product_line.txt", std::ios::app);
+    //fstream: Read and write
+    std::fstream product_line_file;
+    //Read from a file
+    product_line_file.open("product_line.txt", std::ios::in);
+    std::string line;
+    while (getline(product_line_file, line)) {
+        std::cout << line << std::endl;
+    }
+
 
     std::cout << "Choose product to produce: \n";
     for (int i = 0; i < products.size(); i++) {
@@ -138,72 +164,75 @@ void produce_items(const std::vector<Product> &products) {
 
     while (track_while_loop < num_of_new_products) {
         if (products[product_number - 1].itemType == "AM") {
-            if (audio_serial_number >= audio_mobile_serial_number) {
-                audio_serial_number = audio_serial_number;
+            if (stats.audio_serial_number >= stats.audio_mobile_serial_number) {
+                stats.audio_serial_number = stats.audio_serial_number;
             } else {
-                audio_serial_number = audio_mobile_serial_number;
+                stats.audio_serial_number = stats.audio_mobile_serial_number;
             }
-            file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
+            file << stats.track_number << ". " << products[product_number - 1].manufacturer << ", " <<
                  products[product_number - 1].name << ", " << products[product_number - 1].itemType
                  << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                 << audio_serial_number << std::endl;
-            track_number++;
-            audio_serial_number++;
+                 << stats.audio_serial_number << std::endl;
+            stats.track_number++;
+            stats.audio_serial_number++;
         } else if (products[product_number - 1].itemType == "MM") {
-            if (audio_mobile_serial_number >= audio_serial_number) {
-                audio_mobile_serial_number = audio_mobile_serial_number;
+            if (stats.audio_mobile_serial_number >= stats.audio_serial_number) {
+                stats.audio_mobile_serial_number = stats.audio_mobile_serial_number;
             } else {
-                audio_mobile_serial_number = audio_serial_number;
+                stats.audio_mobile_serial_number = stats.audio_serial_number;
             }
-            file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
+            file << stats.track_number << ". " << products[product_number - 1].manufacturer << ", " <<
                  products[product_number - 1].name << ", " << products[product_number - 1].itemType
                  << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                 << audio_mobile_serial_number << std::endl;
-            track_number++;
-            audio_mobile_serial_number++;
+                 << stats.audio_mobile_serial_number << std::endl;
+            stats.track_number++;
+            stats.audio_mobile_serial_number++;
         } else if (products[product_number - 1].itemType == "VI") {
-            if (visual_serial_number >= visual_mobile_serial_number) {
-                visual_serial_number = visual_serial_number;
+            if (stats.visual_serial_number >= stats.visual_mobile_serial_number) {
+                stats.visual_serial_number = stats.visual_serial_number;
             } else {
-                visual_serial_number = visual_mobile_serial_number;
+                stats.visual_serial_number = stats.visual_mobile_serial_number;
             }
-            file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
+            file << stats.track_number << ". " << products[product_number - 1].manufacturer << ", " <<
                  products[product_number - 1].name << ", " << products[product_number - 1].itemType
                  << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                 << visual_serial_number << std::endl;
-            track_number++;
-            visual_serial_number++;
+                 << stats.visual_serial_number << std::endl;
+            stats.track_number++;
+            stats.visual_serial_number++;
         } else if (products[product_number - 1].itemType == "VM") {
-            if (visual_mobile_serial_number >= visual_serial_number) {
-                visual_mobile_serial_number = visual_mobile_serial_number;
+            if (stats.visual_mobile_serial_number >= stats.visual_serial_number) {
+                stats.visual_mobile_serial_number = stats.visual_mobile_serial_number;
             } else {
-                visual_mobile_serial_number = visual_serial_number;
+                stats.visual_mobile_serial_number = stats.visual_serial_number;
             }
-            file << track_number << ". " << products[product_number - 1].manufacturer << ", " <<
+            file << stats.track_number << ". " << products[product_number - 1].manufacturer << ", " <<
                  products[product_number - 1].name << ", " << products[product_number - 1].itemType
                  << " Serial Number: "
                  <<
                  products[product_number - 1].manufacturer.substr(0, 3) << std::setfill('0') << std::setw(5)
-                 << visual_mobile_serial_number << std::endl;
-            track_number++;
-            visual_mobile_serial_number++;
+                 << stats.visual_mobile_serial_number << std::endl;
+            stats.track_number++;
+            stats.visual_mobile_serial_number++;
         }
         track_while_loop++;
 
     }
+    std::cout << "Products added to the production.txt file \n";
 }
 
 //Adding new items to the production list
 /**
- * Add new items to the product line.
+ * @brief Add new items to the product line.
  * If the user or customer want to a new item to produce from this company
  * it can be done here.
+ * @param products
+ * @return
  */
 void add_new_products(std::vector<Product> &products) {
 
@@ -237,13 +266,15 @@ void add_new_products(std::vector<Product> &products) {
 
     products.push_back(new_product);
 
+    std::cout << "New product added to the catalog\n"
 }
 
-
 /**
- * Enter employee's first and last name.
+ * @breif Enter employee's first and last name.
  * It generates username for that employee.
  * Employee can also enter password to keep track on his items.
+ * @param
+ * @return
  */
 void set_employee_account() {
 
@@ -252,10 +283,14 @@ void set_employee_account() {
 
     std::cout << "Enter employee's full name \n ";
 
+    employee add_employee;
+
     std::string first_name;
     std::cin >> first_name;
+    add_employee.first_name = first_name;
     std::string last_name;
     std::cin >> last_name;
+    add_employee.last_name = last_name;
     std::string user_name;
 
     // create user name in proper format
@@ -264,6 +299,7 @@ void set_employee_account() {
 
     char get_first_name = first_name[0];
     user_name = get_first_name + last_name;
+    add_employee.user_name = user_name;
 
     std::cout << "User name: " + user_name + "\n";
 
@@ -277,6 +313,7 @@ void set_employee_account() {
     char password[SIZE];
 
     std::cin >> password;
+    add_employee.password = password;
 
     // code to check if valid
     for (int i = 0; password[i]; i++) {
@@ -294,15 +331,18 @@ void set_employee_account() {
         std::cout << "invalid\n Enter the password again\n";
         std::cin >> password;
     }
-
-    employee_account_file << first_name << ", " << last_name << "\t" << user_name << ", " << password << std::endl;
+    employee_account_file << add_employee.first_name << ",\t " << add_employee.last_name << "\t"
+                          << add_employee.user_name << ", " << add_employee.password << std::endl;
 }
 
-void display_production() {
+/**@brief Gives the total number of specific item produced
+ * @param stats
+ * @return
+ */
+void display_production(struct product_stats stats) {
     std::cout << "Production Track: \n";
-    std::cout << "Audio: " << audio_serial_number << std::endl;
-    std::cout << "Audio Mobile: " << audio_mobile_serial_number << std::endl;
-    std::cout << "Visual: " << visual_serial_number << std::endl;
-    std::cout << "Visual Mobile: " << visual_mobile_serial_number << std::endl;
-
+    std::cout << "Audio: " << stats.audio_serial_number << std::endl;
+    std::cout << "Audio Mobile: " << stats.audio_mobile_serial_number << std::endl;
+    std::cout << "Visual: " << stats.visual_serial_number << std::endl;
+    std::cout << "Visual Mobile: " << stats.visual_mobile_serial_number << std::endl;
 }
