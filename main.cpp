@@ -8,7 +8,7 @@
  *  Create employee's account.
  *
  * @author Karan Patel
- * @bug Few
+ * @bug no errors, few typos and warning
  */
 
 
@@ -56,9 +56,9 @@ std::vector<Product> products;
 
 void add_new_products(std::vector<Product> &);
 
-void produce_items(const std::vector<Product> &, struct product_stats stats);
+void produce_items(const std::vector<Product> &);
 
-void display_production(struct product_stats stats);
+void display_production();
 
 int main() {
 
@@ -107,7 +107,7 @@ void get_choice() {
     std::cin >> choice;
     switch (choice) {
         case 1 :
-            produce_items(products, stats);
+            produce_items(products);
             break;
         case 2 :
             set_employee_account();
@@ -116,7 +116,7 @@ void get_choice() {
             add_new_products(products);
             break;
         case 4 :
-            display_production(stats);
+            display_production();
             break;
         case 5 :
             continue_program = false;//Program ends
@@ -131,10 +131,10 @@ void get_choice() {
  * This function allows user to produce number of items.
  * It then creates a specific serial number of that item type.
  * It also keeps track on how many total items are produced.
- * @param product & struct
+ * @param product
  * @return
  */
-void produce_items(const std::vector<Product> &products, struct product_stats stats) {
+void produce_items(const std::vector<Product> &products) {
 
     std::ofstream file;
     file.open("production.txt", std::ios::app); // std::ios::app appends to the file
@@ -266,7 +266,7 @@ void add_new_products(std::vector<Product> &products) {
 
     products.push_back(new_product);
 
-    std::cout << "New product added to the catalog\n"
+    std::cout << "New product added to the catalog\n";
 }
 
 /**
@@ -336,10 +336,10 @@ void set_employee_account() {
 }
 
 /**@brief Gives the total number of specific item produced
- * @param stats
+ * @param
  * @return
  */
-void display_production(struct product_stats stats) {
+void display_production() {
     std::cout << "Production Track: \n";
     std::cout << "Audio: " << stats.audio_serial_number << std::endl;
     std::cout << "Audio Mobile: " << stats.audio_mobile_serial_number << std::endl;
