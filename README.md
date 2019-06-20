@@ -8,4 +8,4 @@ During this time I experienced C++, CLion and learned about programming from SWE
 
 ### Demonstration 
 <br/>
-![Alt text] (
+![] (https://github.com/Kharnate/Project1/blob/master/calculator-gif.gif)
