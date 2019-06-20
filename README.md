@@ -8,4 +8,36 @@ During this time I experienced C++, CLion and learned about programming from SWE
 
 ### Demonstration 
 <br/>
-![Alt text] (Project1/calculator-gif.gif)
+![] (calculator-gif.gif)
+
+<br/>
+
+### Documentation 
+Doxygen Documentation link provided by Prof. Vanselow 
+_link: https://sites.google.com/view/prof-v/lms/cop-2001/programming-language-basics/c_2/documentation?authuser=0_
+
+<br/>
+
+### Getting Started
+
+<br/>
+
+## Built With
+IDE: CLion
+Resourced Used: class notes, videos and powerpoint. 
+
+<br/>
+
+### Contributig
+I contributed to this project by focusing on the repl.it, notes, videos provided by Professor. I also took help of my classmates and Prof. when needed. 
+
+<br/>
+
+## Author
+Karan Patel
+
+<br/>
+
+### License
+
+
