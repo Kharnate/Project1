@@ -7,8 +7,8 @@ During this time I experienced C++, CLion and learned about programming from SWE
 <br/>
 
 ### Demonstration 
-<br/>
-Project1.PNG
+
+![Alt text] (Project1.PNG)
 
 <br/>
 
