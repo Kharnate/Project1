@@ -8,7 +8,7 @@ During this time I experienced C++, CLion and learned about programming from SWE
 
 ### Demonstration 
 <br/>
-![] (calculator-gif.gif)
+![] (Project1/calculator-gif.gif)
 
 <br/>
 
@@ -52,7 +52,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <br/>
 
-###Acknowledgments
+### Acknowledgments
 - Websites: 
   - https://sites.google.com/view/prof-v/lms/cop-2001/programming-language-basics/c_2/documentation?authuser=0 <br/>
   - https://sites.google.com/view/prof-v/lms/cop-2001<br/>
