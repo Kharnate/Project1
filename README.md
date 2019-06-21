@@ -19,11 +19,12 @@ _link: https://sites.google.com/view/prof-v/lms/cop-2001/programming-language-ba
 <br/>
 
 ### Getting Started
+To test the project, import using Github to get into someone's pc/computer. 
 
 <br/>
 
 ## Built With
-IDE: CLion
+IDE: CLion <br/>
 Resourced Used: class notes, videos and powerpoint. 
 
 <br/>
