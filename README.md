@@ -8,7 +8,8 @@ During this time I experienced C++, CLion and learned about programming from SWE
 
 ### Demonstration 
 
-![Alt text] (Project1.PNG)
+![Project1](https://user-images.githubusercontent.com/42840476/59888934-eb632980-9397-11e9-865f-137f0470ed2b.PNG)
+
 
 <br/>
 
